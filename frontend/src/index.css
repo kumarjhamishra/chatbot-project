@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+html,body{
+  margin: 0;
+  padding: 0;
+  background: #2c3e50;
+  color: #ecf0f1;
+  font-family: "Roboto Slab", serif;
+}
+
+.image-inverted{
+  filter: invert(100%);
+}
+
+.nav-link{
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 8px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* mui inbuilt class customized input */
+.MuiOutlinedInput-root,
+.MuiOutlinedInput-input {
+  border-color: white !important;
+}
+
+.rotate{
+  animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(359deg);
+  }
+}
+
