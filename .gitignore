@@ -1,0 +1,26 @@
+# Top-level ignores
+.env
+node_modules/
+dist/
+*.log
+*.env.local
+
+# Ignore frontend dependencies and builds
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
+/frontend/.DS_Store
+
+# Ignore backend dependencies and builds
+/backend/node_modules/
+/backend/dist/
+/backend/.env
+/backend/.DS_Store
+
+# IDE and OS-specific
+.vscode/
+.DS_Store
+Thumbs.db
+
+# TypeScript output
+*.tsbuildinfo
