@@ -10,7 +10,7 @@ dist/
 /frontend/dist/
 /frontend/.env
 /frontend/.DS_Store
-/frontend/public
+
 
 # Ignore backend dependencies and builds
 /backend/node_modules/
