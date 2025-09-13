@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 // defining a function to extract code blocks and their language
 function extractCodeBlocks(message: string) {
@@ -67,13 +67,16 @@ const ChatItem = ({
           messageBlocks.length > 0 &&
           messageBlocks.map((block, idx) =>
             block.lang !== "text" ? (
-              <SyntaxHighlighter
-                key={idx}
-                style={coldarkDark}
-                language={block.lang.toLowerCase()}
-              >
+              // <SyntaxHighlighter
+              //   key={idx}
+              //   style={coldarkDark}
+              //   language={block.lang.toLowerCase()}
+              // >
+              //   {block.code}
+              // </SyntaxHighlighter>
+              <Typography key={idx} sx={{ fontSize: "20px", fontFamily: "monospace", bgcolor: "#222", color: "#fff", p: 1, borderRadius: 1 }}>
                 {block.code}
-              </SyntaxHighlighter>
+              </Typography>
             ) : (
               <Typography key={idx} sx={{ fontSize: "20px" }}>
                 {block.code}
@@ -96,13 +99,16 @@ const ChatItem = ({
           messageBlocks.length > 0 &&
           messageBlocks.map((block, idx) =>
             block.lang !== "text" ? (
-              <SyntaxHighlighter
-                key={idx}
-                style={coldarkDark}
-                language={block.lang.toLowerCase()}
-              >
+              // <SyntaxHighlighter
+              //   key={idx}
+              //   style={coldarkDark}
+              //   language={block.lang.toLowerCase()}
+              // >
+              //   {block.code}
+              // </SyntaxHighlighter>
+              <Typography key={idx} sx={{ fontSize: "20px", fontFamily: "monospace", bgcolor: "#222", color: "#fff", p: 1, borderRadius: 1 }}>
                 {block.code}
-              </SyntaxHighlighter>
+              </Typography>
             ) : (
               <Typography key={idx} sx={{ fontSize: "20px" }}>
                 {block.code}
