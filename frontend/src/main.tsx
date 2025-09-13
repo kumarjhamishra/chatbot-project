@@ -11,6 +11,10 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 // set the base url
 axios.defaults.baseURL = "http://localhost:5000/api/v1";
+
+// changing connection to deployed backend
+//axios.defaults.baseURL = "https://chatbot-project-backend.onrender.com/api/v1";
+
 // allowing transfer of cookies from frontend to backend
 axios.defaults.withCredentials = true;
 

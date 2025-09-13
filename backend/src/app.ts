@@ -11,7 +11,20 @@ config()
 const app = express();
 
 // middle waare to read the json data
-app.use(cors({origin: "http://localhost:5173", credentials: true}))
+// app.use(cors({origin: "http://localhost:5173", credentials: true}))
+
+
+const allowedOrigins = [
+  "http://localhost:5173", // local frontend
+  "https://your-frontend.onrender.com" // deployed frontend (update when deployed)
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+
 app.use(express.json())
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
