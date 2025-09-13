@@ -29,20 +29,20 @@ function extractCodeBlocks(message: string) {
 }
 
 // function to check that whether a response contains code or not
-function doesContainCode(str: string) {
-  if (
-    str.includes("=") ||
-    str.includes(";") ||
-    str.includes("[") ||
-    str.includes("]") ||
-    str.includes("{") ||
-    str.includes("}") ||
-    str.includes("#") ||
-    str.includes("//")
-  ) {
-    return true;
-  } else return false;
-}
+// function doesContainCode(str: string) {
+//   if (
+//     str.includes("=") ||
+//     str.includes(";") ||
+//     str.includes("[") ||
+//     str.includes("]") ||
+//     str.includes("{") ||
+//     str.includes("}") ||
+//     str.includes("#") ||
+//     str.includes("//")
+//   ) {
+//     return true;
+//   } else return false;
+// }
 
 const ChatItem = ({
   content,
