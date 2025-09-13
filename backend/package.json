@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/genai": "^1.5.1",
+    "@google/generative-ai": "^0.24.1",
+    "@modelcontextprotocol/sdk": "^1.18.0",
     "bcrypt": "^5.1.0",
     "concurrently": "^8.2.0",
     "cookie-parser": "^1.4.6",

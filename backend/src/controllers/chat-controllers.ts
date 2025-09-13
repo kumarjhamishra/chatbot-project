@@ -77,25 +77,38 @@ export const generateChatCompletion = async (
     return res.status(200).json({ chats: user.chats });
     */
 
-    
-    // prepares full chat history as a string 
-    const history = user.chats.map(chat => `${chat.role}: ${chat.content}`).join("\n");
+    // prepares full chat history as a string
+    const history = user.chats
+      .map((chat) => `${chat.role}: ${chat.content}`)
+      .join("\n");
     const fullPrompt = history + `\nuser: ${message}`;
 
-    const genAI = configureGemini();
-    const result = await genAI.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: fullPrompt,
-    })
+    // const genAI = configureGemini();
+    // const result = await genAI.models.generateContent({
+    //   model: "gemini-2.5-flash",
+    //   contents: fullPrompt,
+    // })
 
-    const responseText = result.text;
+    // const responseText = result.text;
+
+    const model = configureGemini();
+    const contents = [
+      ...user.chats.map((chat) => ({
+        role: chat.role,
+        parts: [{ text: chat.content }],
+      })),
+      { role: "user", parts: [{ text: message }] },
+    ];
+
+    const result = await model.generateContent({ contents });
+    const responseText = result.response.text();
 
     // save user query and AI response
-    user.chats.push({role: "user", content: message});
-    user.chats.push({role: "assistant", content: responseText});
+    user.chats.push({ role: "user", content: message });
+    user.chats.push({ role: "assistant", content: responseText });
     await user.save();
 
-    return res.status(200).json({chats: user.chats});
+    return res.status(200).json({ chats: user.chats });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something went wrong" });
@@ -115,15 +128,13 @@ export const sendChatsToUser = async (
       return res.status(401).send("User not registered or Token malfunctioned");
     }
 
-    console.log(user._id.toString(), res.locals.jwtData.id)
+    console.log(user._id.toString(), res.locals.jwtData.id);
 
     if (user._id.toString() !== res.locals.jwtData.id) {
       return res.status(401).send("Permissions didn't matched");
     }
 
-    return res
-      .status(200)
-      .json({ message: "SUCCESS", chats:user.chats });
+    return res.status(200).json({ message: "SUCCESS", chats: user.chats });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "ERROR", cause: error.message });
@@ -143,7 +154,7 @@ export const deleteChats = async (
       return res.status(401).send("User not registered or Token malfunctioned");
     }
 
-    console.log(user._id.toString(), res.locals.jwtData.id)
+    console.log(user._id.toString(), res.locals.jwtData.id);
 
     if (user._id.toString() !== res.locals.jwtData.id) {
       return res.status(401).send("Permissions didn't matched");
@@ -153,9 +164,7 @@ export const deleteChats = async (
     user.chats = []; // above line to avoid type error
     await user.save();
 
-    return res
-      .status(200)
-      .json({ message: "SUCCESS"});
+    return res.status(200).json({ message: "SUCCESS" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "ERROR", cause: error.message });

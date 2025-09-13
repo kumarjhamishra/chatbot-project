@@ -16,10 +16,15 @@
 //   return genAI.getGenerativeModel({ model: "gemini-pro" });
 // };
 
-import { GoogleGenAI } from "@google/genai";
+
+// import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const configureGemini = () => {
-  const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_AI_SECRET || "" });
-  // Try using just 'gemini-pro' as the model name
-  return genAI;
+  // const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_AI_SECRET || "" });
+  // // Try using just 'gemini-pro' as the model name
+  // return genAI;
+
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_AI_SECRET || "");
+  return genAI.getGenerativeModel({ model: "gemini-pro" });
 };
